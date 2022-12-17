@@ -47,4 +47,27 @@ const makeCategoryElement = (category, data) => {
 
     </div>
     `
+
+    makeCards(category, data)
+}
+
+
+const makeCards = (id, data) => {
+    const movieContainer =  document.getElementById(id)
+
+    data.forEach((item, i) => {
+        if (item.backdrop_path == null) {
+            item.backdrop_path = item.poster_path; 
+            if (item.backdrop_path == null) {
+                return
+            }
+        }
+
+        movieContainer.innerHTML += `
+        <div class="movie">
+            <img src="${img_url}${item.backdrop_path}" alt="poster">
+            <p class="movie-title">${item.title}</p>
+        </div>
+        `
+    })
 }
